@@ -11,38 +11,55 @@
 </head>
 
 <body>
-    <div class="head">
+    <div id="head">
 
     </div>
 
-    <div class="nav-top">
-        <div class="nav-top-control nav-top-prev fa fa-angle-double-left"></div>
-        <div class="nav-top-control nav-top-next fa fa-angle-double-right"></div>
+    <div id="nav-top">
+        <div class="nav-top-control nav-top-prev fa fa-angle-double-left" onclick="scrollTab('left')"></div>
+        <div class="nav-top-control nav-top-next fa fa-angle-double-right" onclick="scrollTab('right')"></div>
         <div class="nav-top-control nav-top-down  fa fa-angle-down">
-            <ul>
-                <li>
-                    <dl>
-                        <dd><a href="#">关闭当前页</a></dd>
-                        <dd><a href="#">关闭其他页</a></dd>
-                        <dd><a href="#">关闭全部页</a></dd>
-                    </dl>
-                </li>
-            </ul>
+            <dl class="nav-block nav-block-anim">
+                <dd><a href="javascript:void(0)" onclick="closeSelfTab()">关闭当前页</a></dd>
+                <dd><a href="javascript:void(0)" onclick="closeOtherTab()">关闭其他页</a></dd>
+                <dd><a href="javascript:void(0)" onclick="closeAllTab()">关闭全部页</a></dd>
+            </dl>
         </div>
         <div class="nav-top-tab">
-            <ul>
-                <li class="nav-top-tab-this"> <i class="fa fa-home fa-lg" aria-hidden="true"></i></li>
-                <li><span>主页一</span><i class="fa fa-times nav-top-close" aria-hidden="true"></i></li>
-            </ul>
+            <div class="page-tab">
+                <a href="javascript:void(0)" pageId="home" class="page-tab-show"><i class="fa fa-home fa-lg" aria-hidden="true"></i></a>
+            </div>
         </div>
-    </div>
-    <div class="nav-left">
 
     </div>
-    <div class="content">
+    <div id="nav-left">
+        <div class="nav-left-content">
+            <dl class="page-tree">
+                <dd>
+                    <a pageid="http://baidu.com" title="百度" sn="baidu">
+                        <i class="fa fa-home fa-lg page-tree-icon" aria-hidden="true"></i>
+                        <span class="page-tree-title">百度</span><span class="page-tree-more"></span>
+                    </a>
+                    <dl class="page-tree">
+                        <dd>
+                            <a pageid="http://huxiu.com" title="虎嗅" sn="huxiu"><span class="page-tree-title">虎嗅</span><span class="page-tree-more"></span></a>
+                            <dl class="page-tree">
+                                <dd><a href=""><span class="page-tree-title">副主页一</span></a> </dd>
+                                <dd><a href=""><span class="page-tree-title">副主页一</span> </a></dd>
+                            </dl>
+                        </dd>
+                        <dd> <a href=""><span class="page-tree-title">主页二</span></a></dd>
+                    </dl>
+                </dd>
+                <dd></dd>
+            </dl>
+        </div>
 
+    </div>
+    <div id="content">
     </div>
     <script src="jquery-3.4.1.js"></script>
+    <script src="main.js"></script>
 </body>
 
 </html>

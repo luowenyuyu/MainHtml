@@ -1,3 +1,13 @@
+/* * {
+    transition: all .3s;
+    -webkit-transition: all .3s;
+} */
+
+* {
+    /* background-color: #fff; */
+    box-sizing: border-box;
+}
+
 body,
 html {
     margin: 0;
@@ -10,22 +20,37 @@ ul li {
     list-style: none;
 }
 
+a {
+    text-decoration: none;
+}
+
+.anim {
+    -webkit-animation-duration: .3s;
+    animation-duration: .3s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+
+/* ################################ 布局样式 ################################ */
+
 
 /* 头部样式 */
 
-.head {
-    border: 1px solid red;
+#head {
+    /* border: 1px solid red; */
     height: 50px;
     position: fixed;
     left: 0;
     right: 0;
+    border-bottom: 1px solid #f6f6f6;
 }
 
 
 /* 顶部导航标题样式 */
 
-.nav-top {
-    border: 1px solid blue;
+#nav-top {
+    /* border: 1px solid blue; */
     height: 40px;
     position: fixed;
     top: 50px;
@@ -33,35 +58,43 @@ ul li {
     right: 0;
     padding: 0 80px 0 40px;
     line-height: 40px;
+    /* border-bottom: 1px solid #f6f6f6; */
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1)
 }
 
 
 /* 左边导航样式 */
 
-.nav-left {
-    border: 1px solid yellow;
+#nav-left {
+    /* border: 1px solid yellow; */
     position: fixed;
     width: 200px;
     height: 100%;
     overflow: hidden;
     top: 0;
     padding-top: 50px;
+    /* border-right: 1px solid #f6f6f6; */
 }
 
 
 /* 内容样式 */
 
-.content {
-    border: 1px solid green;
+#content {
+    /* border: 1px solid green; */
     height: 100%;
     position: fixed;
     top: 90px;
     left: 200px;
     right: 0;
+    padding-top: 2px;
+    z-index: -1;
 }
 
 
-/* 顶部导航细节样式 */
+/* ################################ 顶部导航操作样式 ################################ */
+
+
+/* 标签操作样式 */
 
 .nav-top-control {
     font-size: 16px;
@@ -72,6 +105,10 @@ ul li {
     text-align: center;
     cursor: pointer;
     border-right: 1px solid #f6f6f6;
+}
+
+.nav-top-control:hover {
+    background-color: #e2e2e2;
 }
 
 .nav-top-control.fa {
@@ -95,46 +132,144 @@ ul li {
     right: 0;
 }
 
-.nav-top-tab {
-    height: 100%;
-    line-height: 40px;
-    text-align: left;
+
+/* ################################ 下拉导航菜单：一层菜单 ################################ */
+
+.nav-block-anim {
+    animation-name: upbit;
+    -webkit-animation-name: upbit;
 }
 
-.nav-top-tab ul {
-    height: 100%;
-    line-height: 40px;
-    position: relative;
-    text-align: left;
+@keyframes upbit {
+    0% {
+        transform: translate3d(0, 30px, 0);
+        opacity: .3;
+    }
+    100% {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes upbit {
+    0% {
+        transform: translate3d(0, 30px, 0);
+        opacity: .3;
+    }
+    100% {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+    }
+}
+
+.nav-block,
+.nav-block * {
     margin: 0;
     padding: 0;
-    font-size: 0;
+}
+
+.nav-block {
+    top: 40px;
+    right: 0;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .12);
+}
+
+.nav-block {
+    display: none;
+    position: absolute;
+    padding: 5px 0;
+    border: 1px solid #d2d2d2;
+    min-width: 100%;
+    line-height: 36px;
+    /* z-index: 100; */
+    white-space: nowrap;
+}
+
+.nav-block dd {
+    position: relative;
+    cursor: pointer;
+}
+
+.nav-block dd::after {
+    content: '';
+    position: absolute;
+    height: 0;
+    width: 2px;
+    left: 0;
+    top: 0;
+    border: none;
+    background-color: #292B34;
+    transition: all .3s;
+    -webkit-transition: all .3s;
+}
+
+.nav-block dd:hover {
+    background-color: #ccc;
+}
+
+.nav-block dd:hover::after {
+    height: 100%;
+}
+
+.nav-block dd:last-child {
+    border-bottom: none;
+}
+
+.nav-block dd a {
+    display: block;
+    padding: 0 20px;
+    color: #666;
+    line-height: 36px;
 }
 
 
-/* 导航标题栏样式 */
+/* ################################ 顶部导航标签样式 ################################ */
 
-.nav-top-tab ul li {
+.nav-top-tab {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+}
+
+.page-tab {
+    height: 100%;
+    line-height: 40px;
+    font-size: 0px;
+    position: relative;
+    white-space: nowrap;
+}
+
+.page-tab>a {
     display: inline-block;
     line-height: 40px;
     position: relative;
     overflow: hidden;
-    min-width: 0;
-    max-width: 160px;
+    max-width: 200px;
     padding: 0 30px 0 10px;
     cursor: pointer;
     color: #999;
     border-right: 1px solid #f6f6f6;
     vertical-align: top;
     font-size: 14px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
-.nav-top-tab ul li:hover {
+
+/* 主页导航样式：很特殊 */
+
+.page-tab a:first-child {
+    padding: 0 15px;
+    color: inherit;
+}
+
+.page-tab a:hover {
     background-color: #e2e2e2;
     color: #000;
 }
 
-.nav-top-tab ul li::after {
+.page-tab a::after {
     content: '';
     position: absolute;
     top: 0;
@@ -147,45 +282,40 @@ ul li {
     -webkit-transition: all .3s;
 }
 
-.nav-top-tab ul li:hover::after {
+.page-tab a:hover::after {
     width: 100%;
 }
 
-.nav-top-tab ul li:first-child {
-    padding: 0 15px;
-    color: inherit;
-}
 
+/* 关闭 */
 
-/* 关闭样式 */
-
-.nav-top-tab ul li .nav-top-close {
+.page-tab a .page-tab-close {
     display: inline-block;
     position: absolute;
     right: 5px;
     top: 50%;
-    margin: -7px 0 0;
-    width: 17px;
-    height: 17px;
-    line-height: 17px;
+    margin-top: -8px;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
     border-radius: 20%;
     font-size: 12px;
     text-align: center;
 }
 
-.nav-top-tab ul li .nav-top-close:hover {
+.page-tab a .page-tab-close:hover {
     background-color: #ff4500bf;
     color: #000;
 }
 
 
-/* 选中标签样式 */
+/* 选中 */
 
-.nav-top-tab-this {
+.page-tab .page-tab-active {
     color: #000;
 }
 
-.nav-top-tab ul li.nav-top-tab-this::after {
+.page-tab .page-tab-active::after {
     position: absolute;
     left: 0;
     top: 0;
@@ -194,4 +324,145 @@ ul li {
     border: none;
     height: 2px;
     background-color: #292B34;
+}
+
+
+/* ##############################   左侧菜单样式    ############################## */
+
+#nav-left .nav-left-content {
+    width: 100%;
+    height: 100%;
+    border-right: 1px solid #f6f6f6;
+}
+
+.page-tree,
+.page-tree>dd {
+    margin: 0;
+    padding: 0;
+}
+
+.page-tree a,
+.page-tree a:active,
+.page-tree:link,
+.page-tree:visited {
+    color: #000;
+}
+
+
+/* 第一层 */
+
+.page-tree a {
+    position: relative;
+    display: block;
+    padding: 5px 30px 5px 45px;
+    line-height: 30px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.page-tree a::after {
+    content: '';
+    position: absolute;
+    height: 0;
+    width: 4px;
+    left: 0;
+    top: 0;
+    border: none;
+    background-color: blue;
+    transition: all .4s;
+    -webkit-transition: all .4s;
+}
+
+.page-tree a:hover {
+    background-color: #ccc;
+}
+
+.page-tree a:hover::after {
+    height: 100%;
+}
+
+
+/* 选中 */
+
+.page-tree .page-tree-active {
+    background-color: #ccc;
+}
+
+.page-tree .page-tree-active::after {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 4px;
+    left: 0;
+    top: 0;
+    border: none;
+    background-color: blue;
+}
+
+
+/* 图标 */
+
+.page-tree a .page-tree-icon {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    margin-top: -8px;
+}
+
+
+/* 第二层 */
+
+.page-tree>dd>dl>dd>a {
+    padding-left: 45px;
+}
+
+
+/* 第三层 */
+
+.page-tree>dd>dl>dd>dl>dd>a {
+    padding-left: 60px;
+}
+
+
+/* 箭头 */
+
+.page-tree .page-tree-more {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    margin-top: -3px;
+    border-width: 6px;
+    cursor: pointer;
+    border-style: solid dashed dashed;
+    border-color: #000 transparent transparent;
+    transition: all .3s;
+    -webkit-transition: all .3s;
+}
+
+.page-tree .page-tree-more-active {
+    margin-top: -9px;
+    border-style: dashed dashed solid;
+    border-color: transparent transparent #000;
+}
+
+
+/* 隐藏菜单 */
+
+.page-tree>dd>dl {
+    display: none;
+}
+
+
+/* ##############################   内容样式    ############################## */
+
+.page-iframe {
+    display: none;
+}
+
+.page-iframe-active {
+    display: block;
+    width: 100%;
 }
